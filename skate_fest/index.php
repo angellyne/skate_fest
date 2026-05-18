@@ -275,16 +275,41 @@ try {
             overflow-x: hidden;
         }
 
+        /* IMAGEM DE FUNDO - BLACK SHEEP SKATE CO. */
         body::before {
-            content: "🛹";
+            content: "";
             position: fixed;
-            font-size: 150px;
-            opacity: 0.03;
-            bottom: 20px;
-            right: 20px;
-            transform: rotate(-15deg);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('img/logo.png');
+            background-repeat: repeat;
+            background-position: center;
+            background-size: 800px 500px;
+            opacity: 0.15;
             pointer-events: none;
             z-index: 0;
+        }
+
+        /* Versão alternativa com texto caso a imagem não exista */
+        body::after {
+            content: "BLACK SHEEP SKATE CO.";
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-15deg);
+            font-family: 'Barlow Condensed', 'Arial Black', sans-serif;
+            font-weight: 900;
+            font-size: 85px;
+            color: rgba(255, 255, 255, 0.04);
+            white-space: nowrap;
+            letter-spacing: 12px;
+            pointer-events: none;
+            z-index: 0;
+            text-align: center;
+            width: 100%;
+            text-transform: uppercase;
         }
 
         .navbar {
@@ -1093,6 +1118,13 @@ try {
             .podium-item.primeiro { order: -1; }
             .notas-grid { grid-template-columns: repeat(2, 1fr); }
             .cards-grid { grid-template-columns: 1fr; }
+            body::before { background-size: 200px 130px; opacity: 0.1; }
+            body::after { font-size: 45px; letter-spacing: 6px; white-space: normal; top: 45%; }
+        }
+
+        @media (max-width: 480px) {
+            body::before { background-size: 150px 100px; }
+            body::after { font-size: 30px; letter-spacing: 4px; }
         }
     </style>
 </head>
@@ -1657,7 +1689,7 @@ try {
         // Atualizar a cada 5 segundos
         if(document.getElementById('formCompeticao')) {
             setInterval(atualizarCompeticao, 5000);
-            atualizarCompeticao(); // Atualizar imediatamente
+            atualizarCompeticao();
         }
        
         document.addEventListener('DOMContentLoaded', function() {
